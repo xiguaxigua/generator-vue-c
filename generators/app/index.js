@@ -23,6 +23,10 @@ module.exports = class extends Generator {
 
   writing() {
     this.fs.copy(
+      this.templatePath('static/.*'),
+      this.destinationRoot()
+    );
+    this.fs.copy(
       this.templatePath('static/**/*'),
       this.destinationRoot()
     );
@@ -30,6 +34,10 @@ module.exports = class extends Generator {
       this.templatePath('index.html'),
       this.destinationPath('example/index.html'),
       {name: this.props.name}
+    );
+    this.fs.copyTpl(
+      this.templatePath('gitignore'),
+      this.destinationPath('.gitignore')
     );
     this.fs.copyTpl(
       this.templatePath('package.json'),
@@ -45,13 +53,20 @@ module.exports = class extends Generator {
 
   install() {
     this.installDependencies({
-      npm: false,
+      npm: true,
       bower: false,
-      yarn: true
+      yarn: false
     });
   }
 
   end() {
-    this.spawnCommand('git', ['init']);
+    this.spawnCommandSync('git', ['init']);
+    this.spawnCommandSync('git', ['add', '.']);
+    this.spawnCommandSync('git', ['commit', '-m', '"Generator init commit"']);
+
+    this.log('========= notice ==========')
+    this.log('use ' + chalk.yellow('npm run dev') + ' to develop');
+    this.log('use ' + chalk.yellow('npm run build') + ' to build component');
+    this.log('===========================')
   }
 };

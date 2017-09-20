@@ -13,9 +13,3 @@ export default {
   components: { Comp }
 }
 </script>
-
-<style lang="less">
-body {
-  color: blue;
-}
-</style>

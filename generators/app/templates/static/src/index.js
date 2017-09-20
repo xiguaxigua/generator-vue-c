@@ -1,4 +1,4 @@
-import Component from './tiny-dropdown'
+import Component from './component'
 
 function install (Vue, _) {
   Vue.components('Component', Component)

@@ -1,6 +1,6 @@
 {
   "name": "generator-vue-c",
-  "version": "0.0.0",
+  "version": "0.0.16",
   "description": "vue-component-project",
   "homepage": "",
   "author": {
@@ -35,7 +35,6 @@
     "testEnvironment": "node"
   },
   "scripts": {
-    "prepublish": "nsp check",
     "pretest": "eslint . --fix",
     "test": "jest"
   },

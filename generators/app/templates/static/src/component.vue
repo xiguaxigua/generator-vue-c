@@ -1,6 +1,6 @@
 <template>
   <div class="component">
-    123
+    Hello World!
   </div>
 </template>
 
