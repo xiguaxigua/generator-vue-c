@@ -4,7 +4,9 @@ const resolve = require('rollup-plugin-node-resolve')
 const babel = require('rollup-plugin-babel')
 const eslint = require('rollup-plugin-eslint')
 const uglify = require('rollup-plugin-uglify')
+const postcss = require('rollup-plugin-postcss')
 const compList = require('./components')
+const minify = require('uglify-es').minify
 
 compList.forEach(item => {
   let vueSettings = {}
@@ -21,6 +23,7 @@ compList.forEach(item => {
       throwError: true,
       exclude: 'node_modules/**'
     }),
+    postcss()
     vue(vueSettings),
     resolve({
       extensions: ['.js', '.vue']
@@ -30,11 +33,10 @@ compList.forEach(item => {
       plugins: ['external-helpers']
     })
   ]
-  if (item.min) plugins.push(uglify())
+  if (item.min) plugins.push(uglify({}, minify))
 
   rollup.rollup({
     input: item.entry,
-    external: ['element-ui'],
     plugins
   }).then(bundle => {
     bundle.write({

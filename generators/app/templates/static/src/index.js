@@ -1,7 +1,7 @@
 import Component from './component'
 
 function install (Vue, _) {
-  Vue.components('Component', Component)
+  Vue.component('Component', Component)
 }
 
 if (typeof window !== 'undefined' && window.Vue) {
