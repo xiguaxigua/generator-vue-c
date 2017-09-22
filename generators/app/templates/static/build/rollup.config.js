@@ -23,7 +23,7 @@ compList.forEach(item => {
       throwError: true,
       exclude: 'node_modules/**'
     }),
-    postcss()
+    postcss(),
     vue(vueSettings),
     resolve({
       extensions: ['.js', '.vue']
