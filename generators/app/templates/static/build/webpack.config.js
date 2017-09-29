@@ -47,19 +47,23 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        use: [
-          { loader: 'style-loader' },
-          { loader: 'css-loader' },
-          { loader: 'sass-loader' }
-        ]
+        use: ['style-loader', 'css-loader', 'sass-loader']
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
-        loader: 'url-loader'
+        loader: 'url-loader',
+        options: {
+          limit: 10000,
+          name: 'images/[name].[hash].[ext]'
+        }
       },
       {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
-        loader: 'url-loader'
+        loader: 'url-loader',
+        options: {
+          limit: 10000,
+          name: 'fonts/[name].[hash].[ext]'
+        }
       }
     ]
   },

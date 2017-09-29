@@ -1,6 +1,7 @@
 <template>
   <div class="component">
     Hello World!
+    <i class="icon-home"></i>
   </div>
 </template>
 
@@ -11,6 +12,7 @@ export default {
 </script>
 
 <style lang="scss">
+@import './style.scss';
 .component {
   color: red;
 }

@@ -7,6 +7,10 @@ const uglify = require('rollup-plugin-uglify')
 const postcss = require('rollup-plugin-postcss')
 const compList = require('./components')
 const minify = require('uglify-es').minify
+const shell = require('shelljs')
+
+shell.mkdir('lib')
+shell.cp('-r', 'src/fonts', 'lib/fonts')
 
 compList.forEach(item => {
   let vueSettings = {}
