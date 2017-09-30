@@ -100,9 +100,9 @@ module.exports = class extends Generator {
     this.spawnCommandSync('git', ['add', '.']);
     this.spawnCommandSync('git', ['commit', '-m', '"Generator init commit"']);
 
-    this.log('========= notice ==========')
+    this.log('========= notice ==========');
     this.log('use ' + chalk.yellow('npm run dev') + ' to develop');
     this.log('use ' + chalk.yellow('npm run build') + ' to build component');
-    this.log('===========================')
+    this.log('===========================');
   }
 };

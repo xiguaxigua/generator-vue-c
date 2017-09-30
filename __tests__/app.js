@@ -11,7 +11,7 @@ describe('generator-vue-c:app', () => {
 
   it('creates files', () => {
     assert.file([
-      'dummyfile.txt'
+      'package.json'
     ]);
   });
 });

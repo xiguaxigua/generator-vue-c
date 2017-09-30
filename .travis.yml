@@ -3,3 +3,10 @@ node_js:
   - 7
   - 6
   - 4
+branches:
+  only:
+  - master
+install:
+  - yarn
+script:
+  - npm run test
