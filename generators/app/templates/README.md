@@ -1,5 +1,7 @@
 ## <%= name %>
 
+> <%= description %>
+
 ### start
 
 dev：  `npm run dev`

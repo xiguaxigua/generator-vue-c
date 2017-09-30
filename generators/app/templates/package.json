@@ -1,15 +1,16 @@
 {
   "name": "<%= name %>",
   "version": "0.0.1",
-  "description": "",
+  "description": "<%= description %>",
   "main": "lib/index.js",
   "scripts": {
     "dev": "webpack-dev-server --config ./build/webpack.config.js",
-    "build": "rm -f -r lib && node build/rollup.config.js"
+    "build": "rm -f -r lib && node build/rollup.config.js",
+    "prepublishOnly": "npm run build"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "<%= username %> <%= email %>",
+  "license": "MIT",
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-eslint": "^7.2.3",
