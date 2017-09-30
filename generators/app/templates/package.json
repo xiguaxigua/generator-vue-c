@@ -18,7 +18,6 @@
     "babel-plugin-external-helpers": "^6.22.0",
     "babel-preset-env": "^1.6.0",
     "css-loader": "^0.28.7",
-    "element-ui": "^1.4.4",
     "eslint": "3.17.1",
     "eslint-config-standard": "7.0.1",
     "eslint-friendly-formatter": "2.0.7",
