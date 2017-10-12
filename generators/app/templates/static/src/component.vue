@@ -12,7 +12,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import './font.css';
+@import './asserts/font.css';
 .component {
   color: red;
 }

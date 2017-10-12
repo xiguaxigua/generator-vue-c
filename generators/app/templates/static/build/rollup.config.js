@@ -8,9 +8,10 @@ const postcss = require('rollup-plugin-postcss')
 const compList = require('./components')
 const minify = require('uglify-es').minify
 const shell = require('shelljs')
+const autoprefixer = require('autoprefixer')
 
 shell.mkdir('lib')
-shell.cp('-r', 'src/fonts', 'lib/fonts')
+shell.cp('-r', 'src/asserts', 'lib/asserts')
 
 compList.forEach(item => {
   let vueSettings = {}
@@ -19,6 +20,9 @@ compList.forEach(item => {
       css: item.css,
       scss: {
         outputStyle: item.min ? 'compressed' : 'expanded'
+      },
+      postcss: {
+        plugins: [autoprefixer]
       }
     }
   }
@@ -27,8 +31,10 @@ compList.forEach(item => {
       throwError: true,
       exclude: 'node_modules/**'
     }),
-    postcss(),
     vue(vueSettings),
+    postcss({
+      plugins: [autoprefixer]
+    }),
     resolve({
       extensions: ['.js', '.vue']
     }),

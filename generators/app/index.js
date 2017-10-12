@@ -1,20 +1,19 @@
-'use strict';
-const Generator = require('yeoman-generator');
-const chalk = require('chalk');
-const yosay = require('yosay');
+const Generator = require('yeoman-generator')
+const chalk = require('chalk')
+const yosay = require('yosay')
 
 module.exports = class extends Generator {
-  prompting() {
+  prompting () {
     this.log(yosay(
       'Welcome to the impeccable ' + chalk.red('generator-vue-c') + ' generator!'
-    ));
+    ))
 
     const prompts = [
       {
         type: 'input',
         name: 'name',
         message: 'Your project name',
-        default: this.appname
+        default: this.appname.replace(/\s+/g, '-')
       },
       {
         type: 'input',
@@ -33,76 +32,76 @@ module.exports = class extends Generator {
         name: 'description',
         message: 'Project description'
       }
-    ];
+    ]
 
     return this.prompt(prompts).then(props => {
-      this.props = props;
-    });
+      this.props = props
+    })
   }
 
-  writing() {
+  writing () {
+    const { name, username, email, description } = this.props
+    const projectName = name.replace(/\s+/g, '-')
     this.fs.copy(
       this.templatePath('static/.*'),
       this.destinationRoot()
-    );
+    )
     this.fs.copy(
       this.templatePath('static/**/*'),
       this.destinationRoot()
-    );
+    )
     this.fs.copyTpl(
       this.templatePath('index.html'),
       this.destinationPath('example/index.html'),
-      {
-        name: this.props.name
-      }
-    );
+      { name: projectName }
+    )
     this.fs.copyTpl(
       this.templatePath('gitignore'),
       this.destinationPath('.gitignore')
-    );
+    )
     this.fs.copyTpl(
       this.templatePath('package.json'),
       this.destinationPath('package.json'),
       {
-        name: this.props.name,
-        username: this.props.username,
-        email: this.props.email,
-        description: this.props.description
+        name: projectName,
+        username,
+        email,
+        description
       }
-    );
+    )
     this.fs.copyTpl(
       this.templatePath('README.md'),
       this.destinationPath('README.md'),
       {
-        name: this.props.name,
-        description: this.props.description
+        name: projectName,
+        description
       }
-    );
+    )
     this.fs.copyTpl(
       this.templatePath('LICENSE'),
       this.destinationPath('LICENSE'),
       {
-        username: this.props.username
+        username
       }
-    );
+    )
   }
 
-  install() {
+  install () {
     this.installDependencies({
       npm: true,
       bower: false,
       yarn: false
-    });
+    })
   }
 
-  end() {
-    this.spawnCommandSync('git', ['init']);
-    this.spawnCommandSync('git', ['add', '.']);
-    this.spawnCommandSync('git', ['commit', '-m', '"Generator init commit"']);
+  end () {
+    this.spawnCommandSync('git', ['init'])
+    this.spawnCommandSync('git', ['add', '.'])
+    this.spawnCommandSync('git', ['commit', '-m', '"Generator init commit"'])
 
-    this.log('========= notice ==========');
-    this.log('use ' + chalk.yellow('npm run dev') + ' to develop');
-    this.log('use ' + chalk.yellow('npm run build') + ' to build component');
-    this.log('===========================');
+    this.log('========= notice ==========')
+    this.log('use ' + chalk.yellow('npm run dev') + ' to develop')
+    this.log('use ' + chalk.yellow('npm run build') + ' to build component')
+    this.log('===========================')
   }
-};
+}
